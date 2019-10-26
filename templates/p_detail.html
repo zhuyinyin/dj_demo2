@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>竞拍详情</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .a{
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid;
+        }
+        .a td{
+            {#font-size:14px;#}
+            width: 300px;
+            border: 1px solid;
+        }
+        .b{
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        .c{
+            width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+    <h3>{{ user }}</h3>
+    <h2><a href="/logout/">注销</a></h2>
+    <h3 class="a">在线拍卖系统</h3>
+
+<div class="a">
+    <table>
+        <tr>
+            <td>名称:</td>
+            <td>{{ p.p_name }}</td>
+        </tr>
+        <tr>
+            <td>描述:</td>
+            <td>{{ p.p_describe }}</td>
+        </tr>
+        <tr>
+            <td>开始时间:</td>
+            <td>{{ p.p_start|date:"Y-m-d H:i:s"  }}</td>
+        </tr>
+        <tr>
+            <td>结束时间:</td>
+            <td>{{ p.p_stop|date:"Y-m-d H:i:s"  }}</td>
+        </tr>
+        <tr>
+            <td>起拍价:</td>
+            <td>{{ p.p_price }}</td>
+        </tr>
+    </table>
+
+</div>
+<div class="b">
+     <h3><a href="/lists/">返回竞拍</a></h3>
+    <form action="" method="post" onsubmit=" return checkip()">
+        {% csrf_token %}
+        <input type="hidden"  id="aa" value="{{ p.p_price }}" >
+         <input type="text"  id="bb" name='r_price'>
+        <input type="submit" value="竞拍" >
+        <p>不能低于最高竞拍价</p>
+    </form>
+{#        <input type="text" value="{{ r_max }}" name='r_price'>#}
+{#        <input type="button" value="竞拍" class="p_btn"><span class="error"></span>#}
+{#        <p>不能低于最高竞拍价</p>#}
+</div>
+    <div class="c">
+        <p>竞价记录</p>
+    <table>
+        <tr>
+            <td>竞拍时间</td>
+            <td>竞拍价格</td>
+            <td>竞拍人</td>
+        </tr>
+        {% for r in r_list %}
+            <tr>
+                <td>{{ r.r_time|date:"Y-m-d H:i:s"  }}</td>
+                <td>{{ r.r_price }}</td>
+                <td>{{ r.r_person }}</td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+    </div>
+
+{#    <script>#}
+{#        $('.p_btn').click(function () {#}
+{#            $.ajax({#}
+{#                url: 'p_detail',#}
+{#                type: 'post',#}
+{#                data: {#}
+{#                    'r_price': $('.r_price').val(),#}
+{##}
+{#                },#}
+{#                dataType: 'json',#}
+{#                success:function (data) {#}
+{#                    if (data.key == 'yes'){#}
+                        {#location.href='p_detail'#}
+{##}
+{#                    }else{#}
+{#                        $('.error').html(data.key).css({'color': 'red', 'margin-left': '10px'})#}
+{#                    }#}
+{#                }#}
+{#            })#}
+{#        })#}
+{#    </script>#}
+</body>
+<script type="text/javascript">
+ function checkip() {
+        var max = document.getElementById('aa').value
+        var price = document.getElementById('bb').value
+        if (price <= max){
+            alert('不能低于最高竞拍价')
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+</script>
+</html>

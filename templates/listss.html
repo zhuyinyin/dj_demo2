@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>竞拍结果</title>
+</head>
+<body>
+    <h2>{{ user }}</h2>
+<h2>竞拍结果</h2>
+    <table>
+            <tr>
+        <td>名称</td>
+        <td>时间</td>
+        <td>起拍价</td>
+        <td>成交价</td>
+        <td>买家</td>
+    </tr>
+{#    {% for foo in result %}#}
+       <tr>
+           <td>{{ ps1.p_name }}</td>
+           <td>{{ person1.r_time|date:"Y-m-d H:i:s"  }}</td>
+           <td>{{ ps1.p_price }}</td>
+           <td>{{ p1 }}</td>
+           <td>{{ person1.r_person }}</td>
+       </tr>
+{#    {% endfor %}#}
+         <tr>
+           <td>{{ ps2.p_name }}</td>
+           <td>{{ person2.r_time|date:"Y-m-d H:i:s"  }}</td>
+           <td>{{ ps2.p_price }}</td>
+           <td>{{ p2 }}</td>
+           <td>{{ person2.r_person }}</td>
+       </tr>
+         <tr>
+           <td>{{ ps3.p_name }}</td>
+           <td>{{ person3.r_time|date:"Y-m-d H:i:s"  }}</td>
+           <td>{{ ps3.p_price }}</td>
+           <td>{{ p3 }}</td>
+           <td>{{ person3.r_person }}</td>
+       </tr>
+         <tr>
+           <td>{{ ps4.p_name }}</td>
+           <td>{{ person4.r_time|date:"Y-m-d H:i:s"  }}</td>
+           <td>{{ ps4.p_price }}</td>
+           <td>{{ p4 }}</td>
+           <td>{{ person4.r_person }}</td>
+       </tr>
+    </table>
+
+
+</body>
+</html>

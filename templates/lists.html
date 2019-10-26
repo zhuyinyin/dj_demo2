@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>竞拍</title>
+    <style>
+        .a{
+            width: 250px;
+            margin: 0 auto;
+        }
+        .b{
+            width: 700px;
+
+            margin: 0 auto;
+        }
+        .c{
+            border: 1px solid;
+        }
+        .c td{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h3 class="a">在线拍卖系统</h3>
+    <h3>hello{{ user }}</h3>
+    <h2><a href="/logout/">注销</a></h2>
+</div>
+<div>
+    <a href="/listss/">查看竞拍结果</a>
+</div>
+<div class="b">
+    <table class="c">
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+            <td>开始时间</td>
+            <td>结束时间</td>
+            <td>起拍价</td>
+            <td>操作</td>
+        </tr>
+        {% for p in plist %}
+            <tr>
+                <td>{{ p.p_name }}</td>
+                <td>{{ p.p_describe }}</td>
+                <td>{{ p.p_start|date:"Y-m-d H:i:s" }}</td>
+                <td>{{ p.p_stop|date:"Y-m-d H:i:s" }}</td>
+                <td>{{ p.p_price }}</td>
+                <td><a href="{% url 'p_detail' p.pid  %}">竞拍</a></td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+</div>
+
+</body>
+</html>
